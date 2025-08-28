@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - Bistro L'Autre Oeil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d4af37, #f4e99b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #0a0a0a;
+            border-radius: 50%;
+            background: transparent;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #0a0a0a;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #d4af37;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, #f4e99b);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .reserve-btn {
+            background: linear-gradient(135deg, #d4af37, #f4e99b);
+            color: #0a0a0a !important;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .reserve-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Header */
+        .page-header {
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .page-header .highlight {
+            color: #d4af37;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .about-content:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .about-text .highlight-text {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 100px 0;
+            background: #0a0a0a;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 233, 155, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .value-card:hover::before {
+            left: 100%;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 25px;
+        }
+
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .value-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .team-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .team-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .team-intro p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #d4af37, #f4e99b);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #0a0a0a;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #0a0a0a;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .cta-btn-primary {
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: #0a0a0a;
+            border: 2px solid #0a0a0a;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 60px;
+            }
+
+            .about-text h2 {
+                font-size: 2.2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-section, .values-section, .team-section {
+                padding: 60px 0;
+            }
+
+            .section-title h2, .team-intro h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">L'Autre Oeil</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html" class="active">À Propos</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservations.html">Réservation</a></li>
+            </ul>
+            <a href="reservations.html" class="reserve-btn">Réserver</a>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>À Propos de <span class="highlight">L'Autre Oeil</span></h1>
+            <p>Découvrez l'histoire et la passion derrière notre bistro authentique</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Notre Histoire</h2>
+                    <p>Situé au cœur du <span class="highlight-text">secteur Vieux-Aylmer</span>, Bistro L'Autre Oeil est né de la passion pour une cuisine authentique et conviviale. Notre nom évoque cette perspective unique sur la gastronomie québécoise que nous offrons à nos invités.</p>
+                    
+                    <p>Depuis nos débuts, nous nous sommes donnés pour mission de créer un espace où la <span class="highlight-text">tradition culinaire québécoise</span> rencontre l'innovation moderne, dans une atmosphère chaleureuse qui reflète l'esprit de notre belle région.</p>
+                    
+                    <p>Notre équipe passionnée sélectionne soigneusement les meilleurs ingrédients locaux pour vous offrir une expérience gastronomique mémorable, que ce soit pour un repas décontracté entre amis ou une soirée spéciale.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Intérieur du Bistro L'Autre Oeil">
+                </div>
+            </div>
+
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Cuisine du bistro">
+                </div>
+                <div class="about-text">
+                    <h2>Notre Philosophie</h2>
+                    <p>Chez L'Autre Oeil, nous croyons que la <span class="highlight-text">nourriture unit les gens</span>. Chaque plat est préparé avec soin et attention, en utilisant des techniques traditionnelles et des saveurs authentiques.</p>
+                    
+                    <p>Notre menu reflète la richesse de la cuisine québécoise avec nos <span class="highlight-text">poutines signature</span>, nos burgers gourmets, et notre sélection impressionnante de bières artisanales locales et internationales.</p>
+                    
+                    <p>Nous sommes fiers de soutenir les producteurs locaux et de vous offrir une expérience culinaire qui célèbre à la fois notre héritage et notre créativité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Valeurs</h2>
+                <p>Les principes qui guident notre passion culinaire au quotidien</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🍽️</div>
+                    <h3>Authenticité</h3>
+                    <p>Nous préservons les traditions culinaires québécoises tout en apportant notre touche moderne unique à chaque création.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3>Produits Locaux</h3>
+                    <p>Nous privilégions les producteurs locaux et les ingrédients de saison pour garantir fraîcheur et qualité exceptionnelles.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Convivialité</h3>
+                    <p>Notre bistro est un lieu de rencontres et de partage où chaque invité se sent comme chez lui dans une atmosphère chaleureuse.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Excellence</h3>
+                    <p>Nous nous engageons à offrir un service attentionné et une qualité constante dans chacune de nos créations culinaires.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🍺</div>
+                    <h3>Sélection Unique</h3>
+                    <p>Notre carte des boissons propose une sélection soigneusement choisie de bières artisanales, vins et spiritueux d'exception.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🏠</div>
+                    <h3>Communauté</h3>
+                    <p>Enracinés dans le Vieux-Aylmer, nous contribuons à la vitalité de notre communauté locale avec fierté et engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="team-intro">
+                <h2>Notre Équipe</h2>
+                <p>Derrière chaque plat, chaque service, se trouve une équipe passionnée qui met tout son cœur à vous offrir une expérience mémorable. Notre équipe de cuisine et de service travaille en harmonie pour créer cette ambiance unique qui fait la réputation de L'Autre Oeil.</p>
+                
+                <p style="margin-top: 25px;">Que ce soit nos chefs créatifs qui réinventent les classiques québécois, nos barmans experts qui vous conseillent sur notre sélection de bières et spiritueux, ou notre équipe de service attentionnée, chacun contribue à faire de votre visite un moment spécial.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Venez Découvrir Notre Univers!</h2>
+            <p>Laissez-vous séduire par notre approche authentique de la cuisine québécoise</p>
+            <div class="cta-buttons">
+                <a href="menu.html" class="cta-btn cta-btn-primary">Découvrir Notre Menu</a>
+                <a href="contact.html" class="cta-btn cta-btn-secondary">Nous Contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate about content sections
+            document.querySelectorAll('.about-content').forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = `all 1s ease ${index * 0.3}s`;
+                observer.observe(section);
+            });
+
+            // Animate value cards
+            document.querySelectorAll('.value-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.8s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Animate team section
+            const teamSection = document.querySelector('.team-intro');
+            if (teamSection) {
+                teamSection.style.opacity = '0';
+                teamSection.style.transform = 'translateY(40px)';
+                teamSection.style.transition = 'all 1s ease';
+                observer.observe(teamSection);
+            }
+
+            // Parallax effect for header
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const header = document.querySelector('.page-header');
+                if (header) {
+                    const rate = scrolled * -0.3;
+                    header.style.transform = `translateY(${rate}px)`;
+                }
+            });
+
+            // Interactive hover effects
+            document.querySelectorAll('.value-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Button hover effects
+            document.querySelectorAll('.cta-btn, .reserve-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add subtle image parallax
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                document.querySelectorAll('.about-image img').forEach((img, index) => {
+                    const rate = scrolled * (0.1 + index * 0.05);
+                    img.style.transform = `translateY(${rate}px) scale(1.05)`;
+                });
+            });
+
+            // Add loading animation for images
+            document.querySelectorAll('.about-image img').forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 1s ease';
+                
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                // Trigger load if image is already cached
+                if (img.complete) {
+                    img.style.opacity = '1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
